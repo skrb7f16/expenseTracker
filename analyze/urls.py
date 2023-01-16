@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AnalyzerPerMonth
+from .views import AnalyzerPerMonth,AnalyzerPerYear
 urlpatterns=[
-    path('/totalPerMonth',AnalyzerPerMonth.as_view())
+    path('/totalPerMonth',AnalyzerPerYear.as_view())
 ]

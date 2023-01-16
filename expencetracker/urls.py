@@ -17,8 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.authtoken import views
 from django.urls import include
+from .views import Signup,activate,UpdateUser
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/signup',Signup.as_view()),
+    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  activate, name='activate'), 
+    path('api/updateUser',UpdateUser.as_view()),
     path('api/auth',views.obtain_auth_token),
     path('api/expence',include('expences.urls')),
     path('api/analyze',include('analyze.urls'))

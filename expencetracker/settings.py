@@ -58,7 +58,7 @@ ROOT_URLCONF = 'expencetracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,3 +139,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+EMAIL_USE_TLS = True  
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_HOST_USER ='sknk2f20@gmail.com'  
+EMAIL_HOST_PASSWORD = 'kwqqfwqnvzgxdicx'  
+EMAIL_PORT = 587 
