@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth',views.obtain_auth_token),
     path('api/expence',include('expences.urls')),
+    path('api/analyze',include('analyze.urls'))
 ]
