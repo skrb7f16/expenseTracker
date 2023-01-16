@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import AnalyzerPerMonth,AnalyzerPerYear
+from .views import AnalyzerPerMonth,AnalyzerPerYear,AnalyzeLastWeek
 urlpatterns=[
-    path('/totalPerMonth',AnalyzerPerYear.as_view())
+    path('/totalPerMonth',AnalyzerPerMonth.as_view()),
+    path('/totalPerYear',AnalyzerPerYear.as_view()),
+    path('/lastWeek',AnalyzeLastWeek.as_view())
 ]

@@ -8,6 +8,7 @@ from expences.models import Expenses
 from expences.serializers import ExpenseSerializer
 import datetime as dt
 from django.utils import timezone
+import datetime
 # Create your views here.
 
 
@@ -56,4 +57,23 @@ class AnalyzerPerYear(APIView):
         # seri=ExpenseSerializer(expences,many=True)
         return Response(result,status=200)    
     
+        
+class AnalyzeLastWeek(APIView):
+    authentication_classes = [SessionAuthentication, TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        curr=datetime.datetime.today()
+        start=curr-datetime.timedelta(days=7)
+        start=start.date()
+        curr=curr.date()
+
+        expenses=Expenses.objects.filter(by=request.user).filter(atDate__gte=start).filter(atDate__lte=curr)
+        # seri=ExpenseSerializer(expenses,many=True)
+        results={}
+        for i in expenses:
+            if results.get(str(i.atDate))==None:
+                results[str(i.atDate)]=[]
+            temp=ExpenseSerializer(i)
+            results[str(i.atDate)].append(temp.data)
+        return Response(results,status=200)
         
